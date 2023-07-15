@@ -1,0 +1,5 @@
+pip install asyncpg
+pip install fastapi
+pip install uvicorn
+pip install pydantic
+pip install jinja2
