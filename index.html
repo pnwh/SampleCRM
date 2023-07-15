@@ -1,2 +1,101 @@
+<!DOCTYPE html>
 <html>
+<head>
+  <title>Submit Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #myForm {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Submit Form</h1>
+  <form id="myForm">
+    <label for="user_name">Username:</label>
+    <input type="text" id="user_name" name="user_name" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <button type="submit">sign-up</button>
+  </form>
+
+  <script>
+    // Submit form data
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Retrieve form data
+      const formData = {
+        user_name: document.getElementById("user_name").value,
+        password: parseInt(document.getElementById("password").value)
+      };
+
+      // Send POST request using Fetch API
+      fetch("http://localhost:8000/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        alert("Data submitted successfully!");
+        // Reset form
+        document.getElementById("myForm").reset();
+      })
+      .catch(error => {
+        console.error(error);
+        alert("An error occurred while submitting the data.");
+      });
+    });
+  </script>
+</body>
 </html>
