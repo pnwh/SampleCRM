@@ -1,2 +1,4 @@
 Hi, this is a sample repository.
-ErfanTech is here.
+To Run:
+```uvicorn main:app --reload
+```
